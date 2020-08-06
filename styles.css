@@ -1,0 +1,22 @@
+body {
+   
+}
+
+.book-container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+.book {
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid black;
+}
+
+#form {
+    display: none;
+}
+

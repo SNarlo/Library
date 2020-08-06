@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Biblioteca</h1>
+    <button class="add-button">Add Book</button>
+    <section class="book-addition-form" id="form">
+        <form>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author">
+            <label for="pages">Number of Pages</label>
+            <input type="text" name="pages" id="pages">
+            <label for="read">Have you read it?</label>
+            <input type="checkbox" name="read" id="read">
+            <input type="submit" name="Submit" id="submit">
+        </form>
+    </section>
+    <div class="book-container"></div>
+
+    
+</body>
+
+<script>
+    let myLibrary = [];
+
+    function Book(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read =read;
+    }
+
+    let harryP = new Book('Harry Potter and the Philosophers Stone', 'Jk Rowling', 223, true);
+    addBookToLibrary(harryP);
+    let sapiens = new Book('Sapiens', 'Yuval Noah Harari', 443, true);
+    addBookToLibrary(sapiens);
+
+    function addBookToLibrary(book) {
+        myLibrary.push(book);
+    }  
+
+    function render() {
+        for (let i = 0; i < myLibrary.length; i++) {
+            let bookContainer = document.querySelector('.book-container');
+            let book = document.createElement('div');
+            book.classList.add('book');
+
+            let title = document.createElement('p');
+            title.classList.add('title');
+            title.textContent = myLibrary[i].title;
+            book.appendChild(title);
+
+            let author = document.createElement('p');
+            author.classList.add('author');
+            author.textContent = myLibrary[i].author;
+            book.appendChild(author);
+
+            bookContainer.appendChild(book); 
+        }
+    }
+    render();
+
+    let addBookButton = document.querySelector('.add-button');
+    addBookButton.addEventListener('click', () => {
+        let form = document.getElementById('form');
+        if (form.style.display === 'none') {
+            form.style.display = 'block';
+        } else {
+            form.style.display = 'none';
+        }
+    });
+
+</script>
+</html>
