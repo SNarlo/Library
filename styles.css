@@ -1,22 +1,171 @@
 body {
-   
+   display: flex;
+   justify-content: center;
 }
 
 .book-container {
+    margin-top: 80px;
     display: flex;
     justify-content: center;
     align-self: center;
-    width: fit-content;
+    flex-direction: column;
+    width: 60%;
     height: fit-content;
+    border: 1px solid navy;
+}
+
+.book-addition-form {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form { 
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -250px;
+    justify-self: center;
+    height: 300px;
+    width: 500px;
+    background-color: #f1f1f1;
+    border: 2px solid darkgray;
+    padding: 10px;
 }
 
 .book {
     width: fit-content;
     height: fit-content;
-    border: 1px solid black;
 }
 
 #form {
     display: none;
 }
 
+.headings {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #ff6961;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 0px;
+}
+
+.title {
+    justify-self: flex-start;
+    width: 35%;
+    padding: none;
+    margin-bottom: 2px;
+}
+
+.author {
+    justify-self: flex-start;
+    width: 30%;
+    padding: none;
+    margin-bottom: 2px;
+}
+
+.pages {
+    justify-self: flex-start;
+    width: 20%;
+    padding: none;
+    margin-bottom: 2px;
+}
+
+.read {
+    justify-content: flex-start;
+    padding: none;
+    margin-bottom: 2px;
+    width: 15%;
+
+}
+
+.book {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+
+
+.book_title {
+    width: 33%;
+    max-width: 33%;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.book_author {
+    width: 30%;
+    max-width: 30%;
+    text-align: left;
+}
+
+.book_pages {
+    width: 15%;
+    max-width: 15%;
+    text-align: left;
+}
+
+.book_read {
+    width: 15%;
+    max-width: 15%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.read_yes_no {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    width: 60px;
+    height: 25px;
+    border: 1px solid salmon;
+    
+}
+
+.read_yes, .read_no {
+    padding: 3px;
+}
+
+.read_yes {
+    border-right: 1px solid salmon;
+}
+
+.add-button {
+    background-color: whitesmoke;
+    color: navy;
+    height: 30px;
+    width: 90px;
+    outline: none;
+    border: none;
+    padding: 0px;
+    margin: 20px;
+    margin-top: 30px;
+}
+
+.add-button:hover {
+    color: whitesmoke;
+    background-color: navy;
+}
+
+.library-heading {
+    padding: 0px;
+    margin: 20px;
+}
+
+.heading_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
