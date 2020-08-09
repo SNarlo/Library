@@ -6,7 +6,7 @@
     <title>Library</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body id="body">
     <div class="book-container">
         <div class="heading_button">
             <h1 class="library-heading">My Library</h1>
@@ -24,14 +24,14 @@
     <section class="book-addition-form" id="form">
         <form class="form">
             <label for="title">Title</label>
-            <input type="text" name="title" id="title">
+            <input type="text" name="title" id="title" value="">
             <label for="author">Author</label>
             <input type="text" name="author" id="author">
             <label for="pages">Number of Pages</label>
             <input type="text" name="pages" id="pages">
             <label for="read">Have you read it?</label>
             <input type="checkbox" name="read" id="read">
-            <input type="submit" name="Submit" id="submit">
+            <input type="submit" name="Submit" id="submit" value="submit">
         </form>
     </section>
     
@@ -46,6 +46,8 @@
         this.pages = pages;
         this.read =read;
     }
+
+    let a = [];
 
     let harryP = new Book('Harry Potter and the Philosophers Stone', 'Jk Rowling', 223, true);
     addBookToLibrary(harryP);
@@ -105,25 +107,34 @@
     render();
 
     let addBookButton = document.querySelector('.add-button');
-    addBookButton.addEventListener('click', () => {
+    addBookButton.addEventListener('click', openForm);
+    function openForm(e) {
         let form = document.getElementById('form');
         if (form.style.display === 'block') {
             form.style.display = 'none';
         } else {
             form.style.display = 'block';
         }
+    }
+
+    let formSub = document.querySelector('.form');
+    formSub.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let title = formSub.elements['title'].value;
+        let author = formSub.elements['author'].value;
+        let pages = formSub.elements['pages'].value;
+        let read = true;
+        let newBook = new Book(title,author,pages,read);
+        addBookToLibrary(newBook);
+        formSub.reset();
+        closeForm();
+        render();
+        
     });
 
-
-    function selectYesNo() {
-        for (let i = 0; i < myLibrary.length; i++) {
-            const yes = document.getElementById('yes_selection');
-            const no = document.getElementById('no_selection');
-
-            if (myLibrary[i].read) {
-                yes.style.background = 'blue';
-            }
-        }
+    function closeForm() {
+        form.style.display = 'none';
     }
+    
 </script>
 </html>
