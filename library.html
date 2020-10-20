@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,16 +14,17 @@
             <button class="add-button">Add Book</button>
         </div>
         <div class="headings">
-            <h3 class="title">Title</h4>
-            <h3 class="author">Author</h4>
-            <h3 class="pages">Pages</h4>
-            <h3 class="read">Read it?</h4>
+            <h3 class="title">Title</h3>
+            <h3 class="author">Author</h3>
+            <h3 class="pages">Pages</h3>
+            <h3 class="read">Read it?</h3>
         </div>
         
     </div>
 
     <section class="book-addition-form" id="form">
         <form class="form">
+            <input type="image" class="cross" src="library.png">
             <label for="title">Title</label>
             <input type="text" name="title" id="title" value="">
             <label for="author">Author</label>
@@ -47,12 +49,12 @@
         this.read =read;
     }
 
-    let a = [];
 
     let harryP = new Book('Harry Potter and the Philosophers Stone', 'Jk Rowling', 223, true);
     addBookToLibrary(harryP);
     let sapiens = new Book('Sapiens', 'Yuval Noah Harari', 443, true);
     addBookToLibrary(sapiens);
+    
 
 
     function addBookToLibrary(book) {
@@ -100,15 +102,27 @@
             no.textContent = 'No';
             yes_no.appendChild(no);
         
-            book.id = '' + myLibrary[i].title;
-            bookContainer.appendChild(book); 
+            book.id = '' + i;
+            bookContainer.appendChild(book);
+
+            // the delete button for a book
+            let close = document.createElement('div');
+            close.classList.add('delete-book');
+            
+            let closeButton = document.createElement('input');
+            closeButton.type = 'image';
+            closeButton.src = 'library.png';
+            closeButton.classList.add("close-button");
+            closeButton.id = "close-button" + book.id
+            close.appendChild(closeButton);
+            book.appendChild(close);   
         }
     }
     render();
 
     let addBookButton = document.querySelector('.add-button');
     addBookButton.addEventListener('click', openForm);
-    function openForm(e) {
+    function openForm(e) { // A function which opens the form when the add book button is pressed
         let form = document.getElementById('form');
         if (form.style.display === 'block') {
             form.style.display = 'none';
@@ -125,16 +139,40 @@
         let pages = formSub.elements['pages'].value;
         let read = true;
         let newBook = new Book(title,author,pages,read);
-        addBookToLibrary(newBook);
-        formSub.reset();
-        closeForm();
-        render();
-        
+        formSub.reset(); //resets the form
+        clearBooks(); // clear the library
+        addBookToLibrary(newBook); // add the new book
+        render(); // redraw the library
+        form.style.display = 'none';
     });
 
+
+    // This function closes the form 
     function closeForm() {
         form.style.display = 'none';
     }
+
+    closeFormX = document.querySelector('.cross');
+    closeFormX.addEventListener('click', closeForm);
+
+    // A function which clears the book library displayed so that when a book is added, it can re-render the library array
+    function clearBooks() {
+        for (let i = 0; i < myLibrary.length; i++) {
+            let bookId = document.getElementById(i);
+            bookId.parentNode.removeChild(bookId); 
+        }
+    }
+
+    // Removing a book when you click the x button (need to fix null node property) 
+    for (let i = 0; i < myLibrary.length; i++) {
+        let xButton = document.getElementById('close-button' + i);
+        xButton.addEventListener('click', () => {
+            book = document.getElementById(i);
+            book.parentNode.removeChild(book); 
+        });
+
+    }
+    
     
 </script>
 </html>
